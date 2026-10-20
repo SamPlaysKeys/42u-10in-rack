@@ -1,0 +1,38 @@
+# OpenSCAD source
+
+`params.scad` is **generated** from `rack/params.json` by `scripts/params_to_scad.py`.
+Do not edit it by hand; edit the JSON and regenerate.
+
+Every part includes it with a relative path:
+
+```openscad
+include <../../openscad/params.scad>
+```
+
+so the part reads `width_hole_centres`, `rack_unit_u_height` and the rest straight from
+the spec instead of hard-coding numbers.
+
+## Naming
+
+Parameters are flattened from the JSON structure with underscores:
+
+| `rack/params.json` | `params.scad` |
+| :--- | :--- |
+| `rack_unit.u_height` | `rack_unit_u_height` |
+| `width.hole_centres` | `width_hole_centres` |
+| `rack.module_height` | `rack_module_height` |
+| `print.clearance_general` | `print_clearance_general` |
+
+Array elements get a 1-based suffix: `rack_unit_hole_pattern_within_u_1`, `_2`, `_3`.
+
+## Installing OpenSCAD
+
+```bash
+sudo apt install openscad        # Debian/Ubuntu
+```
+
+Render a part headlessly:
+
+```bash
+openscad -o part.stl models/04-shelves/shelf-universal-1u/shelf-universal-1u.scad
+```
