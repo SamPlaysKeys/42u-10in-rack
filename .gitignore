@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# CAD application working files (keep exports, not autosaves)
+*.f3d.bak
+*.FCStd1
+*.3dm.bak
+*.swp
+*.tmp
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Slicer working directories
+printing/profiles/.cache/
+*.gcode.tmp
+
+# NOTE: src/openscad/params.scad is generated but IS committed on purpose, so that
+# models render from a fresh clone without running Python first. CI fails if it is
+# stale - regenerate with scripts/params_to_scad.py after editing rack/params.json.
