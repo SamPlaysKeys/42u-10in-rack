@@ -78,15 +78,14 @@ Board setup and field definitions: [`docs/project-tracking.md`](docs/project-tra
 git clone https://github.com/SamPlaysKeys/42u-10in-rack.git
 cd 42u-10in-rack
 
-# Validate the inventory against the 42U layout (also runs in CI)
-python3 scripts/validate_inventory.py
+chmod +x scripts/*.sh                 # git does not always preserve the exec bit
+python3 scripts/validate_inventory.py # check the inventory against the layout
+python3 scripts/params_to_scad.py     # generate the OpenSCAD include; models need it
 
-# Regenerate the OpenSCAD parameter include from rack/params.json
-python3 scripts/params_to_scad.py
-
-# One-time: create labels, the Project board, and its custom fields
-./scripts/setup_github.sh
+./scripts/setup_github.sh             # one-time: create labels for the board
 ```
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the day-to-day workflow.
 
 ## Design rules of thumb
 

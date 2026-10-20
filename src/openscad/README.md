@@ -3,6 +3,15 @@
 `params.scad` is **generated** from `rack/params.json` by `scripts/params_to_scad.py`.
 Do not edit it by hand; edit the JSON and regenerate.
 
+It is gitignored, so **run the generator once after cloning**, and again after any
+edit to `rack/params.json`:
+
+```bash
+python3 scripts/params_to_scad.py
+```
+
+Until you do, every model will fail to open with a missing-include error.
+
 Every part includes it with a relative path:
 
 ```openscad

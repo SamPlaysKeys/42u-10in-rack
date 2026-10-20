@@ -117,9 +117,14 @@ Every issue should carry exactly one **Stage**-mirroring label (`stage:*`) and o
 
 ## Automation
 
-`.github/workflows/inventory-check.yml` validates the inventory on every push and pull
-request. Add the labels from `scripts/setup_github.sh` before opening issues, or the
-`stage:*` filters will silently match nothing.
+The inventory validator is designed to run in CI, but GitHub refuses API-created
+workflow files: a token without the `workflow` scope cannot write under
+`.github/workflows/`. Install `inventory-check.yml` once through the web UI (Actions →
+New workflow) or a local clone with a suitably scoped token — the exact file and both
+routes are in [`ci-workflow.md`](ci-workflow.md).
+
+Also run `scripts/setup_github.sh` before opening issues, or the `stage:*` filters will
+silently match nothing.
 
 A useful extension once the board is running: a workflow that opens an issue
 automatically for every inventory entry whose `mount.type` is `bracket` or `tray` and

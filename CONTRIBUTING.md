@@ -2,6 +2,14 @@
 
 Mostly written for future-me, because in six months none of this will be obvious.
 
+## First run after cloning
+
+```bash
+chmod +x scripts/*.sh                 # git does not always preserve the exec bit
+python3 scripts/params_to_scad.py     # generate the OpenSCAD include; models need it
+python3 scripts/validate_inventory.py # should print OK
+```
+
 ## Before you change a number
 
 Every dimension lives in **one** place: `rack/params.json`. If you find yourself typing
