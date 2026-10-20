@@ -24,8 +24,8 @@ Get this depth wrong and OpenSCAD does not error — it ignores the missing incl
 resolves every spec variable to `undef`, rendering a 1 mm cube instead of your part.
 Each shared module carries an `assert` that turns that silence into a failure.
 
-so the part reads `width_hole_centres`, `rack_unit_u_height` and the rest straight from
-the spec instead of hard-coding numbers.
+Because the include resolves, the part reads `width_hole_centres`, `rack_unit_u_height`
+and the rest straight from the spec instead of hard-coding numbers.
 
 ## Naming
 
