@@ -1,0 +1,63 @@
+name: Print job
+description: A batch of parts to print
+title: "[print] "
+labels: ["print-job", "stage:ready-to-print"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Print in batches, cheapest failures first — see `printing/README.md` for the
+        suggested order.
+
+  - type: input
+    id: batch
+    attributes:
+      label: Batch directory
+      placeholder: models/exports/2026-11-02-module-1/
+    validations:
+      required: true
+
+  - type: textarea
+    id: parts
+    attributes:
+      label: Parts in this batch
+      placeholder: |
+        | Part | Qty |
+        | :--- | :--- |
+        | frame-module-6u | 1 |
+        | foot | 4 |
+    validations:
+      required: true
+
+  - type: input
+    id: material
+    attributes:
+      label: Material and profile
+      placeholder: "PA-CF, pa-cf-0.6-0.3-structural.ini"
+    validations:
+      required: true
+
+  - type: textarea
+    id: success
+    attributes:
+      label: What success looks like
+      placeholder: |
+        - Module prints without corner lift
+        - Joint coupon fits with <0.3 mm slop
+        - Height measures 266.7 ± 0.5 mm
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before closing
+      options:
+        - label: Every part has a row in printing/print-log.md
+          required: true
+        - label: Measured dimensions recorded
+          required: true
+        - label: Part README status updated
+          required: true
+        - label: rack/params.json print clearances updated if measurements differ
+          required: false

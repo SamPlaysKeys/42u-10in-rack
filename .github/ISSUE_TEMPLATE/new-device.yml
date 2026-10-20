@@ -1,0 +1,95 @@
+name: New device
+description: A device to source, mount and install in the rack
+title: "[device] "
+labels: ["device", "stage:idea"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Add the device to `inventory/devices.yaml` as part of this issue — the issue is
+        not the record, the YAML file is.
+
+  - type: input
+    id: inventory_id
+    attributes:
+      label: Inventory ID
+      description: Must match the `id` field in inventory/devices.yaml.
+      placeholder: switch-2p5g-8port
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options: [compute, network, storage, power, cooling, audio, radio, misc]
+    validations:
+      required: true
+
+  - type: input
+    id: u_height
+    attributes:
+      label: U height
+      placeholder: "1"
+    validations:
+      required: true
+
+  - type: input
+    id: dimensions
+    attributes:
+      label: Measured dimensions (W × D × H, mm)
+      description: Measure the device, or the chassis including anything that protrudes.
+      placeholder: "180 × 120 × 40"
+    validations:
+      required: true
+
+  - type: input
+    id: weight
+    attributes:
+      label: Weight (kg)
+      placeholder: "0.7"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: mount
+    attributes:
+      label: Mounting
+      description: See inventory/README.md for what each type means.
+      options: [native, shelf, bracket, tray, none]
+    validations:
+      required: true
+
+  - type: input
+    id: u_position
+    attributes:
+      label: U position
+      description: Leave blank if not yet placed. Heavy devices belong low.
+      placeholder: "U8"
+    validations:
+      required: false
+
+  - type: textarea
+    id: power
+    attributes:
+      label: Power
+      placeholder: |
+        Input: DC barrel
+        Adapter: 12V 2A external brick
+        Typical draw: 12 W
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before closing
+      options:
+        - label: Added to inventory/devices.yaml
+          required: true
+        - label: Added to rack/layout.md allocation table
+          required: true
+        - label: "Run scripts/validate_inventory.py and confirm it passes"
+          required: true
+        - label: Mount part identified or created (if not native)
+          required: false

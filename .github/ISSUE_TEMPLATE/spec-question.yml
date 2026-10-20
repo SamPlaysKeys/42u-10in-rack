@@ -1,0 +1,35 @@
+name: Spec or decision
+description: A specification question or an open design decision
+title: "[spec] "
+labels: ["stage:spec"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: The question
+    validations:
+      required: true
+
+  - type: textarea
+    id: options
+    attributes:
+      label: Options and trade-offs
+    validations:
+      required: false
+
+  - type: dropdown
+    id: adr
+    attributes:
+      label: Does this need an ADR?
+      description: If yes, write it up in docs/decisions/ rather than leaving the answer in this thread.
+      options: ["Yes", "No", "Unsure"]
+    validations:
+      required: true
+
+  - type: textarea
+    id: blocks
+    attributes:
+      label: What this blocks
+      description: Name the parts or issues that cannot proceed until this is decided.
+    validations:
+      required: false

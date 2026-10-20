@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Design discussion
+    url: https://github.com/SamPlaysKeys/42u-10in-rack/discussions
+    about: For open-ended questions about the rack design rather than a specific deliverable.

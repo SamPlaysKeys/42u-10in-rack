@@ -1,0 +1,101 @@
+name: New part
+description: A part to design, print and install
+title: "[part] "
+labels: ["part", "stage:idea"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        One part, one issue. Title should read `[part] Frame module, 6U`.
+
+        Create the directory first with:
+        `./scripts/new_part.sh <category> <slug> "<Title>" <type>`
+
+  - type: input
+    id: directory
+    attributes:
+      label: Part directory
+      description: Where the part lives, once scaffolded.
+      placeholder: models/01-frame/frame-module-6u
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - 01-frame
+        - 02-rails
+        - 03-power
+        - 04-shelves
+        - 05-panels
+        - 06-cable
+        - 07-mounts
+    validations:
+      required: true
+
+  - type: input
+    id: qty
+    attributes:
+      label: Quantity needed
+      placeholder: "7"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: Which module(s)
+      options: ["all", "1", "2", "3", "4", "5", "6", "7", "n/a"]
+    validations:
+      required: true
+
+  - type: dropdown
+    id: material
+    attributes:
+      label: Material
+      options: ["PETG", "PA-CF", "ASA", "PLA", "Metal", "Undecided"]
+    validations:
+      required: true
+
+  - type: textarea
+    id: purpose
+    attributes:
+      label: What it does
+      description: What it holds or joins, and what it bolts to.
+    validations:
+      required: true
+
+  - type: textarea
+    id: dimensions
+    attributes:
+      label: Critical dimensions
+      description: |
+        Dimensions that matter, and where they came from. Values from the spec should be
+        referenced by their `rack/params.json` key, not retyped.
+      placeholder: |
+        - Hole centres: width_hole_centres (236.525 mm)
+        - Device width: 180 mm measured
+        - Device depth: 120 mm measured
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance test
+      description: How do we know it works? Be specific and measurable.
+      placeholder: "Mounts at every U from 1 to 42 with no reaming; hole centres measure 236.5 ± 0.5 mm."
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and unknowns
+      placeholder: |
+        - May warp at 266 mm tall
+        - Load direction is along the layer lines
+    validations:
+      required: false
