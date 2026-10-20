@@ -8,6 +8,10 @@
 
 include <params.scad>
 
+// If params.scad is missing, OpenSCAD resolves every spec variable to undef and
+// silently renders a 1 mm cube. Fail loudly instead.
+assert(width_nominal_panel_width != undef, "params.scad did not load - run scripts/params_to_scad.py");
+
 // --- joint parameters (move to rack/params.json once validated) ---
 joint_tab_width    = 40;
 joint_tab_height   = 12;

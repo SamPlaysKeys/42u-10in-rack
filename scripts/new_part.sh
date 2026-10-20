@@ -80,7 +80,12 @@ EOF
 cat > "$DIR/$SLUG.scad" <<'SCADEOF'
 // __TITLE__
 // Parametric source. Regenerate params with: python3 scripts/params_to_scad.py
-include <../../openscad/params.scad>
+//
+// Parts live at models/<category>/<slug>/, two levels below models/ and one
+// across to src/, so the include is THREE levels up. Get this depth wrong and
+// OpenSCAD does not error - it ignores the missing include and resolves every
+// spec variable to undef, rendering a 1 mm cube instead of your part.
+include <../../../src/openscad/params.scad>
 
 /* [Parameters] */
 // Add part-specific parameters here. Anything read from params.scad is already
@@ -88,6 +93,9 @@ include <../../openscad/params.scad>
 
 /* [Hidden] */
 $fn = 64;
+
+// Turn that silent failure into a loud one.
+assert(width_design_envelope != undef, "params.scad did not load - run scripts/params_to_scad.py");
 
 module __SLUG__() {
   // TODO: model the part
@@ -123,4 +131,4 @@ echo "Open the tracking issue with:"
 echo "  gh issue create \\"
 echo "    --title \"[part] $TITLE\" \\"
 echo "    --label \"part,type:$TYPE,stage:idea\" \\"
-echo "    --body \"Category: \\`$CATEGORY\\`  Slug: \\`$SLUG\\`\""
+echo "    --body \"Category: $CATEGORY  Slug: $SLUG\""
