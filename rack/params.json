@@ -1,0 +1,85 @@
+{
+  "$comment": "Authoritative dimensional parameters for the rack. Single source of truth: every model and script reads from here. Changing a value here changes the whole design. See docs/10-inch-spec.md for provenance of each number.",
+  "version": "0.1.0-draft",
+  "units": "mm",
+  "revision": "2026-10-20",
+
+  "rack_unit": {
+    "u_height": 44.45,
+    "$source": "EIA-310, inherited by the 10-inch format. Not in dispute.",
+    "holes_per_u": 3,
+    "hole_pattern_within_u": [15.88, 12.70, 15.88],
+    "$pattern_note": "Distance from the top hole of a U to the middle, then middle to bottom.",
+    "two_hole_span": 31.75,
+    "$span_note": "Vertical centres of a 2-hole 1U part: 1st and 3rd hole of the U.",
+    "panel_height_1u": 43.65,
+    "$panel_note": "Deliberately 0.8 mm shorter than 44.45, split 0.4 top and bottom."
+  },
+
+  "rack": {
+    "total_u": 42,
+    "usable_height": 1866.9,
+    "$usable_height_note": "42 * 44.45. Computed, not measured.",
+    "module_u": 6,
+    "module_count": 7,
+    "$module_note": "7 * 6U = 42U exactly, so every module boundary lands on a U boundary. See ADR-0001.",
+    "module_height": 266.7,
+    "depth": 260,
+    "$depth_status": "PROVISIONAL - see ADR-0003. Common values are 200 and 260.",
+    "mounting": "floor-standing"
+  },
+
+  "width": {
+    "hole_centres": 236.525,
+    "$hole_centres_source": "Project MINI RACK community reference; matches the 19-inch offsets applied at half width.",
+    "nominal_panel_width": 254.0,
+    "clear_opening": 222.0,
+    "$clear_opening_note": "Absolute maximum horizontal clearance between rails.",
+    "design_envelope": 210.0,
+    "$design_envelope_note": "What a device or tray should actually fit within, allowing tolerance.",
+    "panel_edge_to_hole": 17.5,
+    "hole_to_rail_edge": 14.25,
+    "tolerance_hole_centres": 0.5,
+    "$tolerance_note": "Acceptable deviation on an assembled rack. Beyond this, commercial panels will not fit."
+  },
+
+  "rail": {
+    "thickness": 6.0,
+    "$thickness_status": "PROVISIONAL - set by the rail model, not yet validated.",
+    "hole_type": "square_cage_nut",
+    "$hole_type_status": "PROVISIONAL - see ADR-0002.",
+    "square_hole": 9.5,
+    "round_hole_m5": 5.5,
+    "round_hole_m6": 6.5,
+    "offset_from_frame_front": 0.0
+  },
+
+  "print": {
+    "clearance_general": 0.2,
+    "clearance_press_fit": 0.05,
+    "clearance_sliding": 0.4,
+    "shrink_allowance": 0.004,
+    "$shrink_note": "Fractional scale factor applied to XY to compensate for material shrink. 0.4% is a starting point for PETG; re-measure per material.",
+    "wall_thickness_min": 1.6,
+    "perimeters_structural": 5
+  },
+
+  "hardware": {
+    "fastener": "M6 cage nut",
+    "$fastener_status": "PROVISIONAL - see ADR-0002.",
+    "bolt_rack": "M6x16",
+    "bolt_frame_join": "M5x30",
+    "frame_bolt_count_per_joint": 4,
+    "insert": "M5 heat-set brass",
+    "foot_pad": "40mm rubber"
+  },
+
+  "stability": {
+    "requires_wall_anchor": true,
+    "$anchor_note": "A ~1.9 m tall, ~260 mm footprint rack is a tip hazard. Anchor or ballast, not optional.",
+    "base_footprint_margin": 30,
+    "$footprint_note": "Base plate extends this far beyond the frame on each side.",
+    "max_load_per_u_kg": 5,
+    "$load_note": "Design target for a printed shelf. Validate with the Phase 1 load test."
+  }
+}

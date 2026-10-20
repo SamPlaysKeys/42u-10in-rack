@@ -1,0 +1,80 @@
+# Devices planned for the 42U rack.
+#
+# This file is the source of truth for WHAT goes in the rack. rack/layout.md is the
+# source of truth for WHERE, and scripts/validate_inventory.py checks the two agree.
+#
+# Dimensions are the device's own external size in mm, not the space it needs once
+# mounted. Add your own margin in the mount design, not here.
+#
+# u_position: null means "planned, not yet placed". Filling it in reserves the space.
+# See inventory/README.md for the field list and the status vocabulary.
+
+version: 1
+last_updated: 2026-10-20
+
+defaults:
+  currency: USD
+  # Anything wider than this cannot fit between the rails, whatever the listing says.
+  max_width_mm: 210
+
+# ---------------------------------------------------------------------------
+# Devices. The two entries below are worked examples showing the shape of a
+# record, not actual purchases. Delete them as real devices are added.
+# ---------------------------------------------------------------------------
+devices:
+  - id: example-switch
+    name: Example 8-port 2.5G switch
+    category: network
+    u_height: 1
+    width_mm: 180
+    depth_mm: 120
+    height_mm: 40
+    weight_kg: 0.7
+    u_position: null
+    mount:
+      type: bracket
+      notes: >-
+        No rack ears. Needs a pair of printed ears reaching the 236.525 mm hole
+        centres, or a 1U shelf. Decide when the actual model is chosen.
+    power:
+      input: dc_barrel
+      adapter: 12V 2A external brick
+      watts_typical: 12
+    network:
+      ports: 8
+      speed: 2.5G
+    status: planned
+    notes: Placeholder. Replace with real hardware.
+
+  - id: example-sbc
+    name: Example Raspberry Pi 5 node
+    category: compute
+    u_height: 1
+    width_mm: 85
+    depth_mm: 56
+    height_mm: 25
+    weight_kg: 0.1
+    u_position: null
+    mount:
+      type: bracket
+      notes: >-
+        Two per 1U if mounted side by side. 85*2 + 20 mm gap = 190 mm, inside the
+        210 mm envelope.
+    power:
+      input: usbc_pd
+      watts_typical: 5
+    status: planned
+    notes: Placeholder. Replace with real hardware.
+
+# ---------------------------------------------------------------------------
+# Categories, for grouping on the Project board and in reports.
+# ---------------------------------------------------------------------------
+categories:
+  compute: Servers, SBCs, mini PCs
+  network: Switches, routers, patch panels
+  storage: NAS, drive shelves, carriers
+  power: PDUs, UPSes, power bricks
+  cooling: Fans, fan controllers, vented panels
+  audio: Audio interfaces, DACs, headphone amps
+  radio: SDRs, transceivers, antennas
+  misc: Everything else
